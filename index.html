@@ -72,7 +72,7 @@
 			const statusEl = document.getElementById('status');
 			const detailEl = document.getElementById('detail');
 
-			const API_BASE = 'nanti ditambahin';
+			const API_BASE = ('https://backend-modul-hosting-vercel.vercel.app').replace(/\/+$/, '');
 
 			async function cek() {
 				btn.disabled = true;
@@ -87,7 +87,7 @@
 					clearTimeout(timer);
 					if (!res.ok) throw new Error('HTTP ' + res.status);
 					const data = await res.json();
-
+					
 					if (data && data.ok) {
 						statusEl.className = 'status ok';
 						statusEl.textContent = 'Terkoneksi dengan backend :^)';
@@ -95,7 +95,6 @@
 						statusEl.className = 'status err';
 						statusEl.textContent = 'Invalid response dari backend';
 					}
-					
 					detailEl.textContent = JSON.stringify(data, null, 2);
 				} catch (err) {
 					statusEl.className = 'status err';
